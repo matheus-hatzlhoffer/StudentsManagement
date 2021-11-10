@@ -18,9 +18,14 @@ public class Student extends SchoolMember {
   /** Constructor: Get from prompt the name and gradeYear of the student. */
   public Student() {
     super();
-    ScannerObj scannerObj = ScannerObj.getInstance();
-    this.gradeYear = scannerObj.getInt("Enter Student's grade year number: ");
-    setMemberID();
+  }
+
+  public int getGradeYear() {
+    return gradeYear;
+  }
+
+  public void setGradeYear(int gradeYear) {
+    this.gradeYear = gradeYear;
   }
 
   /** Generate an ID. */
@@ -29,9 +34,9 @@ public class Student extends SchoolMember {
   }
 
   /** Loop to enroll the students in many courses as they like. */
-  public void enroll(List<Activitie> courses) {
+  public void enrollWithUserInput(List<Activitie> courses) {
     Finances finances = new Finances();
-    super.enroll(courses);
+    super.enrollWithUserInput(courses);
     this.tuitionBalance = getCoursesLength() * finances.getCostOfCourse();
   }
 
@@ -65,5 +70,24 @@ public class Student extends SchoolMember {
             + "\nName: " + getFirstName() + " " + getLastName()
             + "\nCourses Enrolled: " + getCourses()
             + "\nTuition Balance: R$" + this.tuitionBalance + "\n";
+  }
+
+  /**
+  * Initialize the object using static arguments.
+  */
+  public void initializeWithArgs(String firstName, String lastName, int gradeYear) {
+    super.initializeWithArgs(firstName, lastName);
+    setGradeYear(gradeYear);
+    setMemberID();
+  }
+
+  /**
+  * Initialize the Activitie with user-input.
+  */
+  public void initializeWithUserInput() {
+    super.initializeWithUserInput();
+    ScannerObj scannerObj = ScannerObj.getInstance();
+    setGradeYear(scannerObj.getInt("Enter Student's grade year number: "));
+    setMemberID();
   }
 }

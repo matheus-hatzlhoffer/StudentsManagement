@@ -1,6 +1,8 @@
 import activities.Activitie;
 import activities.classroom.Classroom;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import member.SchoolMember;
@@ -27,7 +29,9 @@ public class App {
       System.out.print("Number 0: Quit\nNumber 1: Add Courses\nNumber 2: Add Teachers");
       System.out.print("\nNumber 3: Add Students\nNumber 4: Show members\n");
       System.out.print("Number 5: Show activities\nNumber 6: Delete Member\n");
+      System.out.print("Number 7: Add data using json\n");
       actionNumber = scannerObj.getInt("Enter the number action: ");
+      System.out.println();
 
       switch (actionNumber) {
         case 1:
@@ -47,12 +51,35 @@ public class App {
           break;
         case 6:
           deleteMembers();
+          break;
+        case 7:
+          readJsonData();
+          break;
       
         default:
           break;
       }
       
     } while (actionNumber != 0);
+  }
+
+  private static void readJsonData() {
+    String fileName = scannerObj.getString("What's the file name? ");
+    Path path = Paths.get("input_file/"  + fileName + ".json");
+    ArrayList<Object> objects = scannerObj.readJsonfiles(path);
+    if (objects.isEmpty()) {
+      System.out.println("Problema na leitura de arquivo");
+      return;
+    }
+    for (int i = 0; i < objects.size(); i++) {
+      if (objects.get(i) instanceof Classroom) {
+        activities.add((Classroom) objects.get(i));
+      } else if (objects.get(i) instanceof Teacher) {
+        members.add((Teacher) objects.get(i));
+      } else {
+        members.add((Student) objects.get(i));
+      }
+    }
   }
 
   private static void showCourses() {
@@ -72,7 +99,8 @@ public class App {
     // Create n number of new students
     for (int i = 0; i < numOfSudents; i++) {
       Student student = new Student();
-      student.enroll(activities);
+      student.initializeWithUserInput();
+      student.enrollWithUserInput(activities);
       student.payTuition();
       System.out.println();
       members.add(student);
@@ -81,13 +109,15 @@ public class App {
 
   private static void addTeacher() {
     Teacher teacher = new Teacher();
-    teacher.enroll(activities);
+    teacher.initializeWithUserInput();
+    teacher.enrollWithUserInput(activities);
     System.out.println();
     members.add(teacher);
   }
 
   private static void addCourse() {
     Classroom course = new Classroom();
+    course.initializeWithUserInput();
     System.out.println();
     activities.add(course);
   }

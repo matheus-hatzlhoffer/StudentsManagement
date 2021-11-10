@@ -6,6 +6,7 @@ import utils.interfaces.SchoolObjectInterface;
 
 public class SearchList {
   public static <T extends SchoolObjectInterface> T searchObject(List<T> list, String key) {
-    return list.stream().filter(obj -> key.equals(obj.getSchoolID())).findFirst().orElse(null);
+    return list.stream().filter(obj -> key.equals(obj.getSchoolID()) || key.equals(obj.getName()))
+      .findFirst().orElse(null);
   }
 }

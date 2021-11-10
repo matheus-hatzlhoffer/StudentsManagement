@@ -16,11 +16,7 @@ public abstract class SchoolMember {
   private static int id = 1000;
 
   /** Get from prompt the name and generate a schoolID to the person. */
-  public SchoolMember() {
-    ScannerObj scannerObj = ScannerObj.getInstance();
-    this.firstName = scannerObj.getString("Enter Member's first name: ");
-    this.lastName = scannerObj.getString("Enter Member's last name: ");
-  }
+  public SchoolMember() {}
 
   protected abstract void setMemberID();
 
@@ -63,10 +59,14 @@ public abstract class SchoolMember {
     return this.firstName;
   }
 
+  public String getName() {
+    return this.firstName + " " + this.lastName;
+  }
+
   /**
   * Add a course to the Teacher to teach.
   */
-  public void enroll(List<Activitie> courses) {
+  public void enrollWithUserInput(List<Activitie> courses) {
     String code;
     do {
       ScannerObj scannerObj = ScannerObj.getInstance();
@@ -90,6 +90,23 @@ public abstract class SchoolMember {
 
   public int getCoursesLength() {
     return courses.size();
+  }
+
+  /**
+  * Initialize the object using static arguments.
+  */
+  protected void initializeWithArgs(String firstName, String lastName) {
+    setFirstName(firstName);
+    setLastName(lastName);
+  }
+
+  /**
+  * Initialize the Activitie with user-input.
+  */
+  protected void initializeWithUserInput() {
+    ScannerObj scannerObj = ScannerObj.getInstance();
+    setFirstName(scannerObj.getString("Enter Member's first name: "));
+    setLastName(scannerObj.getString("Enter Member's last name: "));
   }
 
 }
