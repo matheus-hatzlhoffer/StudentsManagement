@@ -24,20 +24,20 @@ public class App {
     do {
       // Ask how many new users we want to add
       System.out.println("What action do you want to do?"); 
-      System.out.print("Number 0: Quit\nNumber 1: Add Students\nNumber 2: Add Teachers");
-      System.out.print("\nNumber 3: Add Courses\nNumber 4: Show members\n");
-      System.out.print("Number 5: Show activities\n");
+      System.out.print("Number 0: Quit\nNumber 1: Add Courses\nNumber 2: Add Teachers");
+      System.out.print("\nNumber 3: Add Students\nNumber 4: Show members\n");
+      System.out.print("Number 5: Show activities\nNumber 6: Delete Member\n");
       actionNumber = scannerObj.getInt("Enter the number action: ");
 
       switch (actionNumber) {
         case 1:
-          addStudents();
+          addCourse();
           break;
         case 2:
           addTeacher();
           break;
         case 3:
-          addCourse();
+          addStudents();
           break;
         case 4:
           showMembers();
@@ -45,6 +45,8 @@ public class App {
         case 5:
           showCourses();
           break;
+        case 6:
+          deleteMembers();
       
         default:
           break;
@@ -88,5 +90,11 @@ public class App {
     Classroom course = new Classroom();
     System.out.println();
     activities.add(course);
+  }
+
+  private static void deleteMembers() {
+    String memberID = scannerObj.getString("Enter de member ID you wanna delete: ");
+    members.removeIf(member -> member.getSchoolID().equals(memberID));
+    System.out.println("\nMember " + memberID + "removed\n");
   }
 }
