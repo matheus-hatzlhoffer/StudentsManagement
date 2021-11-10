@@ -12,35 +12,28 @@ public class Teacher extends SchoolMember {
   */
   public Teacher() {
     super();
-    ScannerObj scannerObj = ScannerObj.getInstance();
-    this.schoolChair = scannerObj.getString("Enter the teacher's subject of study: ");
-    this.wage = scannerObj.getInt("Enter the teacher's wage: ");
+  }
 
-    setMemberID();
+  public int getWage() {
+    return wage;
+  }
+
+  public String getSchoolChair() {
+    return schoolChair;
+  }
+
+  public void setSchoolChair(String schoolChair) {
+    this.schoolChair = schoolChair;
+  }
+
+  public void setWage(int wage) {
+    this.wage = wage;
   }
 
   /** Set Teacher School ID. */
   protected void setMemberID() {
     setSchoolID("0");
   }
-
-  /**
-  * Add a course to the Teacher to teach.
-  */
-  // public void enroll() {
-  //   String course;
-  //   do {
-  //     ScannerObj scannerObj = ScannerObj.getInstance();
-  //     course = scannerObj.getString("Enter course to teach (Q to quit): ");
-  //     if (!course.equals("Q")) {
-  //       addCourse(course);
-  //     } else {
-  //       if (getCourses().equals("")) {
-  //         System.out.println("The teacher need to teach 1 course at least. ");
-  //       }
-  //     }
-  //   } while (!course.equals("Q") || getCourses().equals(""));
-  // }
 
   /** Return a String with the student info. */
   public String toString() {
@@ -49,6 +42,29 @@ public class Teacher extends SchoolMember {
             + "\nSubject of study: " + this.schoolChair
             + "\nCourses Teached: " + getCourses()
             + "\nWage: R$" + this.wage + "\n";
+  }
+
+  /**
+  * Initialize the object using static arguments.
+  */
+  public void initializeWithArgs(String firstName, String lastName, String schoolChair, int wage) {
+    super.initializeWithArgs(firstName, lastName);
+    setSchoolChair(schoolChair);
+    setWage(wage);
+    setMemberID();
+  }
+
+  /**
+  * Initialize the Activitie with user-input.
+  */
+  public void initializeWithUserInput() {
+    super.initializeWithUserInput();
+    ScannerObj scannerObj = ScannerObj.getInstance();
+    this.schoolChair = scannerObj.getString("Enter the teacher's subject of study: ");
+    this.wage = scannerObj.getInt("Enter the teacher's wage: ");
+
+    setMemberID();
+
   }
   
 }

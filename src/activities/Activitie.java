@@ -15,12 +15,7 @@ public abstract class Activitie implements ActivitieInterface {
   private static int id = 100;
 
   /** Create an activitie with name from user input and create an ID. */
-  public Activitie() {
-    ScannerObj scannerObj = ScannerObj.getInstance();
-    this.name = scannerObj.getString("What's the activitie's name: ");
-    this.frequency = scannerObj.getString("What's the activitie's frequency: ");
-    setSchoolID();
-  }
+  public Activitie() {}
   
   private void setSchoolID() {
     this.schoolID = getName().substring(0, 2).toUpperCase() + "" + id;
@@ -49,6 +44,7 @@ public abstract class Activitie implements ActivitieInterface {
 
   public void setName(String name) {
     this.name = name;
+    setSchoolID();
   }
 
   public void setFrequency(String frequency) {
@@ -69,6 +65,23 @@ public abstract class Activitie implements ActivitieInterface {
   public String toString() {
     return "Code: " + getSchoolID()
             + "\nName: " + getName() + "\n";
+  }
+
+  /**
+  * Initialize the Activitie with user-input.
+  */
+  protected void initializeWithUserInput() {
+    ScannerObj scannerObj = ScannerObj.getInstance();
+    setName(scannerObj.getString("What's the activitie's name: "));
+    setFrequency(scannerObj.getString("What's the activitie's frequency: "));
+  }
+
+  /**
+  * Initialize the object using static arguments.
+  */
+  protected void initializeWithArgs(String name, String frequency) {
+    setName(name);
+    setFrequency(frequency);
   }
   
 }

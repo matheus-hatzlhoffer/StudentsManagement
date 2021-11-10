@@ -10,8 +10,6 @@ public class Classroom extends Activitie {
   /** Create a Class by user's input. */
   public Classroom() {
     super();
-    ScannerObj scannerObj = ScannerObj.getInstance();
-    this.subject = scannerObj.getString("What's the class's subject: ");
   }
 
   public String getSubject() {
@@ -20,6 +18,23 @@ public class Classroom extends Activitie {
   
   public void setSubject(String subject) {
     this.subject = subject;
+  }
+
+  /**
+  * Initializar the Class with user input.
+  */
+  public void initializeWithUserInput() {
+    super.initializeWithUserInput();
+    ScannerObj scannerObj = ScannerObj.getInstance();
+    setSubject(scannerObj.getString("What's the class's subject: "));
+  }
+
+  /**
+  * Initialize the object using static arguments.
+  */
+  public void initializeWithArgs(String name, String frequency, String subject) {
+    super.initializeWithArgs(name, frequency);
+    setSubject(subject);
   }
 
 }

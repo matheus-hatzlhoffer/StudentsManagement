@@ -1,0 +1,68 @@
+{
+  "curses": [
+    {
+      "name": "History 101",
+      "frequency": "Every week",
+      "subject": "Greek History"
+    },
+    {
+      "name": "Math 101",
+      "frequency": "Every month",
+      "subject": "Math 101"
+    },
+    {
+      "name": "Math 102",
+      "frequency": "Every day",
+      "subject": "Math 102"
+    }
+  ],
+  "teachers": [
+    {
+      "firstName": "Rogério",
+      "lastName": "Vasconcelos",
+      "schoolChair": "History",
+      "wage": 2000,
+      "courses": [
+        "History 101"
+      ]
+    },
+    {
+      "firstName": "Carlos",
+      "lastName": "Aranha",
+      "schoolChair": "Math",
+      "wage": 2000,
+      "courses": [
+        "Math 102",
+        "Math 101"
+      ]
+    }
+  ],
+  "students": [
+    {
+      "firstName": "José",
+      "lastName": "Aranha",
+      "gradeYear": 2,
+      "courses": [
+        "Math 101",
+        "History 101"
+      ]
+    },
+    {
+      "firstName": "Pedro",
+      "lastName": "Salvador",
+      "gradeYear": 1,
+      "courses": [
+        "Math 101",
+        "Math 102"
+      ]
+    },
+    {
+      "firstName": "Marcelo",
+      "lastName": "Valente",
+      "gradeYear": 3,
+      "courses": [
+        "History 101"
+      ]
+    }
+  ]
+}
